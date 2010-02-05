@@ -1,0 +1,25 @@
+import logging
+
+from pylons import request, response, session, tmpl_context as c
+from pylons.controllers.util import abort, redirect_to
+
+from myrats.lib.base import BaseController, render
+
+import myrats.model as model
+import myrats.model.meta as meta
+import myrats.lib.helpers as h
+
+log = logging.getLogger(__name__)
+
+class TicketController(BaseController):
+
+    def show(self, id):
+        ticket_q = model.meta.Session.query(model.Ticket)
+        for ticket in ticket_q.filter(model.Ticket.id == id):
+            c.title = "Viewing ticket number " + str(ticket.id)
+            return c.title
+#        c.title = "Ticket view"
+#        c.id = ticket.get(int(id))
+#        c.created_at = ticket.get(created_at)
+#        c.description = ticket.get(description)
+#        return render('/base/ticket.mako')

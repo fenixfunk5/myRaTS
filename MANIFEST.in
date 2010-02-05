@@ -1,0 +1,3 @@
+include myrats/config/deployment.ini_tmpl
+recursive-include myrats/public *
+recursive-include myrats/templates *

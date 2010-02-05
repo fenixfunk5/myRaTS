@@ -1,0 +1,5 @@
+<%inherit file="/base/home.mako" />
+
+<h1>${c.title}</h1>
+<h2>${c.created_at}</h2>
+<p>${c.description}</p>

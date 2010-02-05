@@ -1,0 +1,627 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<sql>
+<datatypes db="web2py">
+	<group label="Numeric" color="rgb(238,238,170)">
+		<type label="Integer" length="1" sql="integer" re="INTEGER" quote=""/>
+		<type label="Double precision" length="1" sql="double" re="DOUBLE" quote=""/>
+	</group>
+	<group label="Character" color="rgb(255,200,200)">
+		<type label="String" length="1" sql="string" quote="'"/>
+		<type label="Text" length="1" sql="text" quote="'"/>
+		<type label="BLOB" length="1" sql="blob" quote="'"/>
+	</group>
+	<group label="Date &amp; Time" color="rgb(200,255,200)">
+		<type label="Time" length="0" sql="time" quote="'"/>
+		<type label="Date" length="0" sql="date" quote="'"/>
+		<type label="Datetime" length="0" sql="datetime" quote="'"/>
+	</group>
+	<group label="Miscellaneous" color="rgb(200,200,255)">
+		<type label="Boolean" length="0" sql="boolean" quote=""/>
+		<type label="Upload" length="0" sql="upload" quote=""/>
+		<type label="Password" length="0" sql="password" quote=""/>
+	</group>
+</datatypes><table x="968" y="883" name="ticket">
+<row name="ticket_category_id" null="1" autoincrement="0">
+<datatype>integer</datatype>
+<default>NULL</default><relation table="ticket_category" row="id" />
+</row>
+<row name="customer_id" null="1" autoincrement="0">
+<datatype>integer</datatype>
+<default>NULL</default><relation table="customer" row="id" />
+</row>
+<row name="id" null="1" autoincrement="1">
+<datatype>integer</datatype>
+<default>NULL</default></row>
+<row name="user_id" null="1" autoincrement="0">
+<datatype>integer</datatype>
+<default>NULL</default><relation table="user" row="id" />
+</row>
+<row name="priority" null="1" autoincrement="0">
+<datatype>integer</datatype>
+<default>NULL</default></row>
+<row name="description" null="1" autoincrement="0">
+<datatype>string</datatype>
+<default>NULL</default></row>
+<row name="status" null="1" autoincrement="0">
+<datatype>string</datatype>
+<default>NULL</default></row>
+<row name="created_at" null="1" autoincrement="0">
+<datatype>datetime</datatype>
+<default>NULL</default></row>
+<row name="updated_at" null="1" autoincrement="0">
+<datatype>datetime</datatype>
+<default>NULL</default></row>
+<key type="PRIMARY" name="">
+<part>id</part>
+</key>
+</table>
+<table x="799" y="863" name="customer">
+<row name="id" null="1" autoincrement="1">
+<datatype>integer</datatype>
+<default>NULL</default></row>
+<row name="first_name" null="1" autoincrement="0">
+<datatype>string</datatype>
+<default>NULL</default></row>
+<row name="last_name" null="1" autoincrement="0">
+<datatype>string</datatype>
+<default>NULL</default></row>
+<row name="email" null="1" autoincrement="0">
+<datatype>string</datatype>
+<default>NULL</default></row>
+<row name="created_at" null="1" autoincrement="0">
+<datatype>datetime</datatype>
+<default>NULL</default></row>
+<key type="PRIMARY" name="">
+<part>id</part>
+</key>
+</table>
+<table x="936" y="777" name="ticket_category">
+<row name="id" null="1" autoincrement="1">
+<datatype>integer</datatype>
+<default>NULL</default></row>
+<row name="name" null="1" autoincrement="0">
+<datatype>string</datatype>
+<default>NULL</default></row>
+<key type="PRIMARY" name="">
+<part>id</part>
+</key>
+</table>
+<table x="1179" y="759" name="ticket_comment">
+<row name="ticket_id" null="1" autoincrement="0">
+<datatype>integer</datatype>
+<default>NULL</default><relation table="ticket" row="id" />
+</row>
+<row name="comment_id" null="1" autoincrement="0">
+<datatype>integer</datatype>
+<default>NULL</default><relation table="comment" row="id" />
+</row>
+<key type="PRIMARY" name="">
+</key>
+</table>
+<table x="1621" y="1008" name="comment">
+<row name="id" null="1" autoincrement="1">
+<datatype>integer</datatype>
+<default>NULL</default></row>
+<row name="user_id" null="1" autoincrement="0">
+<datatype>integer</datatype>
+<default>NULL</default><relation table="user" row="id" />
+</row>
+<row name="title" null="1" autoincrement="0">
+<datatype>string</datatype>
+<default>NULL</default></row>
+<row name="content" null="1" autoincrement="0">
+<datatype>text</datatype>
+<default>NULL</default></row>
+<row name="created_at" null="1" autoincrement="0">
+<datatype>datetime</datatype>
+<default>NULL</default></row>
+<key type="PRIMARY" name="">
+<part>id</part>
+</key>
+</table>
+<table x="1785" y="1013" name="attachment">
+<row name="id" null="1" autoincrement="1">
+<datatype>integer</datatype>
+<default>NULL</default></row>
+<row name="comment_id" null="1" autoincrement="0">
+<datatype>integer</datatype>
+<default>NULL</default><relation table="comment" row="id" />
+</row>
+<row name="type" null="1" autoincrement="0">
+<datatype>string</datatype>
+<default>NULL</default></row>
+<row name="uri" null="1" autoincrement="0">
+<datatype>string</datatype>
+<default>NULL</default></row>
+<key type="PRIMARY" name="">
+<part>id</part>
+</key>
+</table>
+<table x="1197" y="848" name="event">
+<row name="id" null="1" autoincrement="1">
+<datatype>integer</datatype>
+<default>NULL</default></row>
+<row name="comment_id" null="1" autoincrement="0">
+<datatype>integer</datatype>
+<default>NULL</default><relation table="comment" row="id" />
+</row>
+<row name="ticket_id" null="1" autoincrement="0">
+<datatype>integer</datatype>
+<default>NULL</default><relation table="ticket" row="id" />
+</row>
+<row name="user_id" null="1" autoincrement="0">
+<datatype>integer</datatype>
+<default>NULL</default><relation table="user" row="id" />
+</row>
+<row name="name" null="1" autoincrement="0">
+<datatype>string</datatype>
+<default>NULL</default></row>
+<row name="created_at" null="1" autoincrement="0">
+<datatype>datetime</datatype>
+<default>NULL</default></row>
+<key type="PRIMARY" name="">
+<part>id</part>
+</key>
+</table>
+<table x="1172" y="439" name="ticket_item">
+<row name="id" null="1" autoincrement="1">
+<datatype>integer</datatype>
+<default>NULL</default></row>
+<row name="ticket_id" null="1" autoincrement="0">
+<datatype>integer</datatype>
+<default>NULL</default><relation table="ticket" row="id" />
+</row>
+<row name="shelf_id" null="1" autoincrement="0">
+<datatype>integer</datatype>
+<default>NULL</default><relation table="shelf" row="id" />
+</row>
+<row name="type" null="1" autoincrement="0">
+<datatype>string</datatype>
+<default>NULL</default></row>
+<row name="brand" null="1" autoincrement="0">
+<datatype>string</datatype>
+<default>NULL</default></row>
+<row name="model" null="1" autoincrement="0">
+<datatype>string</datatype>
+<default>NULL</default></row>
+<row name="serial" null="1" autoincrement="0">
+<datatype>string</datatype>
+<default>NULL</default></row>
+<key type="PRIMARY" name="">
+<part>id</part>
+</key>
+</table>
+<table x="1477" y="358" name="library">
+<row name="id" null="1" autoincrement="1">
+<datatype>integer</datatype>
+<default>NULL</default></row>
+<row name="name" null="1" autoincrement="0">
+<datatype>string</datatype>
+<default>NULL</default></row>
+<key type="PRIMARY" name="">
+<part>id</part>
+</key>
+</table>
+<table x="1342" y="412" name="shelf">
+<row name="id" null="1" autoincrement="1">
+<datatype>integer</datatype>
+<default>NULL</default></row>
+<row name="library_id" null="1" autoincrement="0">
+<datatype>integer</datatype>
+<default>NULL</default><relation table="library" row="id" />
+</row>
+<row name="number" null="1" autoincrement="0">
+<datatype>integer</datatype>
+<default>NULL</default></row>
+<key type="PRIMARY" name="">
+<part>id</part>
+</key>
+</table>
+<table x="937" y="684" name="ticket_pre_order">
+<row name="ticket_id" null="1" autoincrement="0">
+<datatype>integer</datatype>
+<default>NULL</default><relation table="ticket" row="id" />
+</row>
+<row name="pre_order_id" null="1" autoincrement="0">
+<datatype>integer</datatype>
+<default>NULL</default><relation table="pre_order" row="id" />
+</row>
+<key type="PRIMARY" name="">
+</key>
+</table>
+<table x="774" y="686" name="pre_order">
+<row name="id" null="1" autoincrement="1">
+<datatype>integer</datatype>
+<default>NULL</default></row>
+<row name="customer_id" null="1" autoincrement="0">
+<datatype>integer</datatype>
+<default>NULL</default><relation table="customer" row="id" />
+</row>
+<row name="description" null="1" autoincrement="0">
+<datatype>string</datatype>
+<default>NULL</default></row>
+<row name="created_at" null="1" autoincrement="0">
+<datatype>datetime</datatype>
+<default>NULL</default></row>
+<key type="PRIMARY" name="">
+<part>id</part>
+</key>
+</table>
+<table x="1132" y="1199" name="user">
+<row name="id" null="1" autoincrement="1">
+<datatype>integer</datatype>
+<default>NULL</default></row>
+<row name="email" null="1" autoincrement="0">
+<datatype>string</datatype>
+<default>NULL</default></row>
+<row name="password" null="1" autoincrement="0">
+<datatype>password</datatype>
+<default>NULL</default></row>
+<row name="level" null="1" autoincrement="0">
+<datatype>integer</datatype>
+<default>NULL</default></row>
+<row name="last_login" null="1" autoincrement="0">
+<datatype>datetime</datatype>
+<default>NULL</default></row>
+<key type="PRIMARY" name="">
+<part>id</part>
+</key>
+</table>
+<table x="1408" y="656" name="task">
+<row name="id" null="1" autoincrement="1">
+<datatype>integer</datatype>
+<default>NULL</default></row>
+<row name="name" null="1" autoincrement="0">
+<datatype>string</datatype>
+<default>NULL</default></row>
+<row name="events_triggered" null="1" autoincrement="0">
+<datatype>string</datatype>
+<default>NULL</default></row>
+<row name="status" null="1" autoincrement="0">
+<datatype>boolean</datatype>
+<default>NULL</default></row>
+<row name="created_at" null="1" autoincrement="0">
+<datatype>datetime</datatype>
+<default>NULL</default></row>
+<row name="finished_at" null="1" autoincrement="0">
+<datatype>datetime</datatype>
+<default>NULL</default></row>
+<key type="PRIMARY" name="">
+<part>id</part>
+</key>
+</table>
+<table x="1177" y="648" name="ticket_task">
+<row name="task_id" null="1" autoincrement="0">
+<datatype>integer</datatype>
+<default>NULL</default><relation table="task" row="id" />
+</row>
+<row name="ticket_id" null="1" autoincrement="0">
+<datatype>integer</datatype>
+<default>NULL</default><relation table="ticket" row="id" />
+</row>
+<key type="PRIMARY" name="">
+</key>
+</table>
+<table x="1589" y="803" name="task_comment">
+<row name="task_id" null="1" autoincrement="0">
+<datatype>integer</datatype>
+<default>NULL</default><relation table="task" row="id" />
+</row>
+<row name="comment_id" null="1" autoincrement="0">
+<datatype>integer</datatype>
+<default>NULL</default><relation table="comment" row="id" />
+</row>
+<key type="PRIMARY" name="">
+</key>
+</table>
+<table x="514" y="693" name="pre_order_product">
+<row name="id" null="1" autoincrement="1">
+<datatype>integer</datatype>
+<default>NULL</default></row>
+<row name="pre_order_id" null="1" autoincrement="0">
+<datatype>integer</datatype>
+<default>NULL</default><relation table="pre_order" row="id" />
+</row>
+<row name="product_id" null="1" autoincrement="0">
+<datatype>integer</datatype>
+<default>NULL</default><relation table="product" row="id" />
+</row>
+<row name="name" null="1" autoincrement="0">
+<datatype>string</datatype>
+<default>NULL</default></row>
+<row name="price" null="1" autoincrement="0">
+<datatype>integer</datatype>
+<default>NULL</default></row>
+<row name="quantity" null="1" autoincrement="0">
+<datatype>integer</datatype>
+<default>NULL</default></row>
+<key type="PRIMARY" name="">
+<part>id</part>
+</key>
+</table>
+<table x="325" y="613" name="product">
+<row name="id" null="1" autoincrement="1">
+<datatype>integer</datatype>
+<default>NULL</default></row>
+<row name="product_category_id" null="1" autoincrement="0">
+<datatype>integer</datatype>
+<default>NULL</default><relation table="product_category" row="id" />
+</row>
+<row name="supplier_id" null="1" autoincrement="0">
+<datatype>integer</datatype>
+<default>NULL</default><relation table="supplier" row="id" />
+</row>
+<row name="reference" null="1" autoincrement="0">
+<datatype>string</datatype>
+<default>NULL</default></row>
+<row name="name" null="1" autoincrement="0">
+<datatype>string</datatype>
+<default>NULL</default></row>
+<row name="description" null="1" autoincrement="0">
+<datatype>string</datatype>
+<default>NULL</default></row>
+<row name="price" null="1" autoincrement="0">
+<datatype>integer</datatype>
+<default>NULL</default></row>
+<key type="PRIMARY" name="">
+<part>id</part>
+</key>
+</table>
+<table x="598" y="926" name="customer_address">
+<row name="customer_id" null="1" autoincrement="0">
+<datatype>integer</datatype>
+<default>NULL</default><relation table="customer" row="id" />
+</row>
+<row name="address_id" null="1" autoincrement="0">
+<datatype>integer</datatype>
+<default>NULL</default><relation table="address" row="id" />
+</row>
+<key type="PRIMARY" name="">
+</key>
+</table>
+<table x="451" y="923" name="address">
+<row name="id" null="1" autoincrement="1">
+<datatype>integer</datatype>
+<default>NULL</default></row>
+<row name="type" null="1" autoincrement="0">
+<datatype>string</datatype>
+<default>NULL</default></row>
+<row name="street" null="1" autoincrement="0">
+<datatype>string</datatype>
+<default>NULL</default></row>
+<row name="postal_code" null="1" autoincrement="0">
+<datatype>string</datatype>
+<default>NULL</default></row>
+<row name="city" null="1" autoincrement="0">
+<datatype>string</datatype>
+<default>NULL</default></row>
+<key type="PRIMARY" name="">
+<part>id</part>
+</key>
+</table>
+<table x="683" y="1028" name="customer_phone_number">
+<row name="customer_id" null="1" autoincrement="0">
+<datatype>integer</datatype>
+<default>NULL</default><relation table="customer" row="id" />
+</row>
+<row name="phone_number_id" null="1" autoincrement="0">
+<datatype>integer</datatype>
+<default>NULL</default><relation table="phone_number" row="id" />
+</row>
+<key type="PRIMARY" name="">
+</key>
+</table>
+<table x="447" y="1081" name="phone_number">
+<row name="id" null="1" autoincrement="1">
+<datatype>integer</datatype>
+<default>NULL</default></row>
+<row name="type" null="1" autoincrement="0">
+<datatype>string</datatype>
+<default>NULL</default></row>
+<row name="number" null="1" autoincrement="0">
+<datatype>string</datatype>
+<default>NULL</default></row>
+<key type="PRIMARY" name="">
+<part>id</part>
+</key>
+</table>
+<table x="47" y="594" name="product_category">
+<row name="id" null="1" autoincrement="1">
+<datatype>integer</datatype>
+<default>NULL</default></row>
+<row name="parent_id" null="1" autoincrement="0">
+<datatype>integer</datatype>
+<default>NULL</default></row>
+<row name="name" null="1" autoincrement="0">
+<datatype>string</datatype>
+<default>NULL</default></row>
+<key type="PRIMARY" name="">
+<part>id</part>
+</key>
+</table>
+<table x="1185" y="1026" name="session">
+<row name="id" null="1" autoincrement="1">
+<datatype>integer</datatype>
+<default>NULL</default></row>
+<row name="ticket_id" null="1" autoincrement="0">
+<datatype>integer</datatype>
+<default>NULL</default><relation table="ticket" row="id" />
+</row>
+<row name="user_id" null="1" autoincrement="0">
+<datatype>integer</datatype>
+<default>NULL</default><relation table="user" row="id" />
+</row>
+<row name="created_at" null="1" autoincrement="0">
+<datatype>datetime</datatype>
+<default>NULL</default></row>
+<row name="finished_at" null="1" autoincrement="0">
+<datatype>datetime</datatype>
+<default>NULL</default></row>
+<key type="PRIMARY" name="">
+<part>id</part>
+</key>
+</table>
+<table x="1319" y="1012" name="session_comment">
+<row name="session_id" null="1" autoincrement="0">
+<datatype>integer</datatype>
+<default>NULL</default><relation table="session" row="id" />
+</row>
+<row name="comment_id" null="1" autoincrement="0">
+<datatype>integer</datatype>
+<default>NULL</default><relation table="comment" row="id" />
+</row>
+<key type="PRIMARY" name="">
+</key>
+</table>
+<table x="760" y="1257" name="supply_request">
+<row name="id" null="1" autoincrement="1">
+<datatype>integer</datatype>
+<default>NULL</default></row>
+<row name="user_id" null="1" autoincrement="0">
+<datatype>integer</datatype>
+<default>NULL</default><relation table="user" row="id" />
+</row>
+<row name="content" null="1" autoincrement="0">
+<datatype>text</datatype>
+<default>NULL</default></row>
+<row name="created_at" null="1" autoincrement="0">
+<datatype>datetime</datatype>
+<default>NULL</default></row>
+<key type="PRIMARY" name="">
+<part>id</part>
+</key>
+</table>
+<table x="720" y="1169" name="ticket_supply_request">
+<row name="ticket_id" null="1" autoincrement="0">
+<datatype>integer</datatype>
+<default>NULL</default><relation table="ticket" row="id" />
+</row>
+<row name="supply_request_id" null="1" autoincrement="0">
+<datatype>integer</datatype>
+<default>NULL</default><relation table="supply_request" row="id" />
+</row>
+<key type="PRIMARY" name="">
+</key>
+</table>
+<table x="79" y="880" name="supplier">
+<row name="id" null="1" autoincrement="1">
+<datatype>integer</datatype>
+<default>NULL</default></row>
+<row name="name" null="1" autoincrement="0">
+<datatype>string</datatype>
+<default>NULL</default></row>
+<row name="website" null="1" autoincrement="0">
+<datatype>string</datatype>
+<default>NULL</default></row>
+<key type="PRIMARY" name="">
+<part>id</part>
+</key>
+</table>
+<table x="208" y="917" name="supplier_address">
+<row name="supplier_id" null="1" autoincrement="0">
+<datatype>integer</datatype>
+<default>NULL</default><relation table="supplier" row="id" />
+</row>
+<row name="address_id" null="1" autoincrement="0">
+<datatype>integer</datatype>
+<default>NULL</default><relation table="address" row="id" />
+</row>
+<key type="PRIMARY" name="">
+</key>
+</table>
+<table x="55" y="1092" name="supplier_contact">
+<row name="id" null="1" autoincrement="1">
+<datatype>integer</datatype>
+<default>NULL</default></row>
+<row name="supplier_id" null="1" autoincrement="0">
+<datatype>integer</datatype>
+<default>NULL</default><relation table="supplier" row="id" />
+</row>
+<row name="first_name" null="1" autoincrement="0">
+<datatype>string</datatype>
+<default>NULL</default></row>
+<row name="last_name" null="1" autoincrement="0">
+<datatype>string</datatype>
+<default>NULL</default></row>
+<row name="email" null="1" autoincrement="0">
+<datatype>string</datatype>
+<default>NULL</default></row>
+<row name="position" null="1" autoincrement="0">
+<datatype>string</datatype>
+<default>NULL</default></row>
+<key type="PRIMARY" name="">
+<part>id</part>
+</key>
+</table>
+<table x="244" y="1217" name="supplier_contact_phone_number">
+<row name="supplier_contact_id" null="1" autoincrement="0">
+<datatype>integer</datatype>
+<default>NULL</default><relation table="supplier_contact" row="id" />
+</row>
+<row name="phone_number_id" null="1" autoincrement="0">
+<datatype>integer</datatype>
+<default>NULL</default><relation table="phone_number" row="id" />
+</row>
+<key type="PRIMARY" name="">
+</key>
+</table>
+<table x="102" y="993" name="supplier_phone_number">
+<row name="supplier_id" null="1" autoincrement="0">
+<datatype>integer</datatype>
+<default>NULL</default><relation table="supplier" row="id" />
+</row>
+<row name="phone_number_id" null="1" autoincrement="0">
+<datatype>integer</datatype>
+<default>NULL</default><relation table="phone_number" row="id" />
+</row>
+<key type="PRIMARY" name="">
+</key>
+</table>
+<table x="946" y="457" name="invoice">
+<row name="id" null="1" autoincrement="1">
+<datatype>integer</datatype>
+<default>NULL</default></row>
+<row name="pre_order_id" null="1" autoincrement="0">
+<datatype>integer</datatype>
+<default>NULL</default><relation table="pre_order" row="id" />
+</row>
+<row name="billing_address_type" null="1" autoincrement="0">
+<datatype>string</datatype>
+<default>NULL</default></row>
+<row name="status" null="1" autoincrement="0">
+<datatype>string</datatype>
+<default>NULL</default></row>
+<row name="discount" null="1" autoincrement="0">
+<datatype>integer</datatype>
+<default>NULL</default></row>
+<row name="created_at" null="1" autoincrement="0">
+<datatype>datetime</datatype>
+<default>NULL</default></row>
+<key type="PRIMARY" name="">
+<part>id</part>
+</key>
+</table>
+<table x="696" y="478" name="invoice_payment">
+<row name="id" null="1" autoincrement="1">
+<datatype>integer</datatype>
+<default>NULL</default></row>
+<row name="invoice_id" null="1" autoincrement="0">
+<datatype>integer</datatype>
+<default>NULL</default><relation table="invoice" row="id" />
+</row>
+<row name="amount" null="1" autoincrement="0">
+<datatype>integer</datatype>
+<default>NULL</default></row>
+<row name="mean" null="1" autoincrement="0">
+<datatype>string</datatype>
+<default>NULL</default></row>
+<row name="created_at" null="1" autoincrement="0">
+<datatype>datetime</datatype>
+<default>NULL</default></row>
+<key type="PRIMARY" name="">
+<part>id</part>
+</key>
+</table>
+</sql>
+
+
